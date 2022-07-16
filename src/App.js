@@ -1,25 +1,121 @@
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import './bootstrap.min.css';
+import React, { Component } from 'react';
+class App extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      prenom: "",
+      nom: "",
+      age: 0,
+      classe : "",
+      tableau: []
+    }
+   
+    this.hundleChange = this.hundleChange.bind(this)
+    this.hundleSubmit = this.hundleSubmit.bind(this)
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  hundleChange(e){
+    const name = e.target.name
+    this.setState({[name]: e.target.value})
+  }
+ 
+  hundleSubmit(e){
+    e.preventDefault();
+    const {prenom, nom , age , classe} = this.state
+    const tt = this.state.tableau.push(prenom, nom, age, classe);
+    this.setState({tableau : this.state.tableau})
+    const t = this.state.tableau;
+    console.log(t);          
+
+  }
+  render(){
+    const {prenom, nom , age , classe} = this.state  
+    const tabs = [...prenom, nom , age , classe]
+    const tableau = this.state.tableau;
+
+    const tab = tableau.map((tabs) =>
+   <tr><td>{tabs.nom}</td><td>{tabs.prenom}</td><td>{tabs.age}</td><td>{tabs.classe}</td></tr>)
+    console.log(tab);
+     
+    return (
+
+      <div className="App container mt-4">
+       <div className="row">
+        <div className="col-md-6">
+
+              <h2>Inscription des Eleves</h2>
+              <form onSubmit = {this.hundleSubmit}>
+                  <div className='form-group' >
+                    <label htmlFor="prenom"> Prenom</label>
+                    <input type="text" id='prenom' placeholder='Entrez votre Prenom' name='prenom'  className='form-control' value={prenom} onChange = {this.hundleChange}/>
+                  </div>
+                  <div className='form-group'>
+                    <label htmlFor="nom">Nom</label>
+                    <input type="text" id='nom' placeholder='Entrez votre Nom' name='nom'  className='form-control' value={nom} onChange = {this.hundleChange}/>
+                  </div>
+                  <div className='form-group'>
+                    <label htmlFor="age">Age</label>
+                    <input type="number" id='age' placeholder='Entrez votre Age' name='age'  className='form-control' value={age} onChange = {this.hundleChange} />
+                  </div>
+                  <div className='form-group'> 
+                    <label htmlFor="classe">Classe</label>
+                    <input type="text" id='classe' placeholder='Entrez votre classe'name='classe'  className='form-control'value={classe} onChange = {this.hundleChange}/>
+                  </div>
+                  <div className='form-group'> 
+                  <button type='submit' className='btn btn-success btn-lg'>Enregistrer</button>
+                  </div>
+                
+              </form>
+        </div>
+        <div className="col-md-6">
+          <h2>listes des eleves</h2>
+         {/* <Tableau prenom = {prenom}  nom={nom} age ={age} classe= {classe}/>
+          */}
+           <table className='table table-bordered'>
+              <thead>
+                <tr>
+                  <th> kkjht</th>
+                  <th>mngh</th>
+                  <th>mgjght</th>
+                  <th>frde</th>
+                </tr>
+              </thead>
+              <tbody>
+            
+                {/* <tr>
+                  <td>{tableau[0]}</td>
+                  <td>{tableau[1]}</td>
+                  <td>{tableau[2]}</td>
+                  <td>{tableau[3]}</td>
+                </tr> */}
+                {tab}
+                
+                {/* {tableau.map((tabs) =>
+                    <tr><td>{tabs.nom}</td><td>{tabs.prenom}</td><td>{tabs.age}</td><td>{tabs.classe}</td></tr>)} */}
+               
+                
+ 
+
+
+
+        </tbody>
+      </table>
+         
+          
+          {JSON.stringify(this.state)}
+        
+                
+        </div>
+   </div>
+  </div>
+    );
+
+  }
+  }
+  
+
 
 export default App;
