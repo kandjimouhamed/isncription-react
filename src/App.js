@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-// import './App.css';
 import './bootstrap.min.css';
 import React, { Component } from 'react';
 class App extends Component{
@@ -21,36 +19,23 @@ class App extends Component{
     const name = e.target.name
     this.setState({[name]: e.target.value})
   }
- 
+
   hundleSubmit(e){
     e.preventDefault();
     const {prenom, nom , age , classe} = this.state
     const copy = this.state.tableau.slice()
-
     copy.push(prenom, nom, age, classe);
-     console.log(copy);   
     this.setState({tableau : copy})
 
   }
   render(){
     const {prenom, nom , age , classe} = this.state  
-    const tabs = [...prenom, nom , age , classe]
+    // const tabs = [...prenom, nom , age , classe]
     const tableau = this.state.tableau;
-    // const fore = tableau.forEach()
-
-  //   const tab = tableau.map((tabs) =>
-  //  <tr><td>{tabs.prenom}</td><td>{tabs.nom}</td><td>{tabs.age}</td><td>{tabs.classe}</td></tr>)
-   const tab = tableau.map((tabs) => <td>{tabs}</td>);
-    
-     
-    
-     
     return (
-
       <div className="App container mt-4">
        <div className="row">
         <div className="col-md-6">
-
               <h2>Inscription des Eleves</h2>
               <form onSubmit = {this.hundleSubmit}>
                   <div className='form-group' >
@@ -72,13 +57,10 @@ class App extends Component{
                   <div className='form-group'> 
                   <button type='submit' className='btn btn-success btn-lg'>Enregistrer</button>
                   </div>
-                
               </form>
         </div>
         <div className="col-md-6">
           <h2>listes des eleves</h2>
-         {/* <Tableau prenom = {prenom}  nom={nom} age ={age} classe= {classe}/>
-          */}
            <table className='table table-bordered'>
               <thead>
                 <tr>
@@ -89,32 +71,13 @@ class App extends Component{
                 </tr>
               </thead>
               <tbody>
-            
-                {/* <tr>
-                  <td>{tableau[0]}</td>
-                  <td>{tableau[1]}</td>
-                  <td>{tableau[2]}</td>
-                  <td>{tableau[3]}</td>
-               </tr> */}
                <tr>
               {tableau.map(tabs =><td>{tabs}</td>)}
               </tr>
-                
-                {/* {tableau.map((tabs) =>
-                    <tr><td>{tabs.nom}</td><td>{tabs.prenom}</td><td>{tabs.age}</td><td>{tabs.classe}</td></tr>)} */}
-               
-                
- 
-
-
-
         </tbody>
       </table>
-         
           
-          {JSON.stringify(this.state)}
-        
-                
+          {JSON.stringify(this.state)} 
         </div>
    </div>
   </div>
