@@ -25,10 +25,14 @@ class App extends Component{
   hundleSubmit(e){
     e.preventDefault();
     const {prenom, nom , age , classe} = this.state
-    const tt = this.state.tableau.push(prenom, nom, age, classe);
-    this.setState({tableau : this.state.tableau})
-    const t = this.state.tableau;
-    console.log(t);          
+    const copy = this.state.tableau.slice()
+    // console.log(this.state);
+    copy.push(prenom, nom, age, classe);
+     console.log(copy);   
+    this.setState({tableau : copy})
+    // console.log(this.setState({tableau : this.state.tableau}));
+    // const t = this.state.tableau;
+    // console.log(t);          
 
   }
   render(){
@@ -37,8 +41,8 @@ class App extends Component{
     const tableau = this.state.tableau;
 
     const tab = tableau.map((tabs) =>
-   <tr><td>{tabs.nom}</td><td>{tabs.prenom}</td><td>{tabs.age}</td><td>{tabs.classe}</td></tr>)
-    console.log(tab);
+   <tr><td>{tabs.prenom}</td><td>{tabs.nom}</td><td>{tabs.age}</td><td>{tabs.classe}</td></tr>)
+    
      
     return (
 
