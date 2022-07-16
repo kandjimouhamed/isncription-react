@@ -26,22 +26,23 @@ class App extends Component{
     e.preventDefault();
     const {prenom, nom , age , classe} = this.state
     const copy = this.state.tableau.slice()
-    // console.log(this.state);
+
     copy.push(prenom, nom, age, classe);
      console.log(copy);   
     this.setState({tableau : copy})
-    // console.log(this.setState({tableau : this.state.tableau}));
-    // const t = this.state.tableau;
-    // console.log(t);          
 
   }
   render(){
     const {prenom, nom , age , classe} = this.state  
     const tabs = [...prenom, nom , age , classe]
     const tableau = this.state.tableau;
+    // const fore = tableau.forEach()
 
-    const tab = tableau.map((tabs) =>
-   <tr><td>{tabs.prenom}</td><td>{tabs.nom}</td><td>{tabs.age}</td><td>{tabs.classe}</td></tr>)
+  //   const tab = tableau.map((tabs) =>
+  //  <tr><td>{tabs.prenom}</td><td>{tabs.nom}</td><td>{tabs.age}</td><td>{tabs.classe}</td></tr>)
+   const tab = tableau.map((tabs) => <td>{tabs}</td>);
+    
+     
     
      
     return (
@@ -81,10 +82,10 @@ class App extends Component{
            <table className='table table-bordered'>
               <thead>
                 <tr>
-                  <th> kkjht</th>
-                  <th>mngh</th>
-                  <th>mgjght</th>
-                  <th>frde</th>
+                  <th>Prenom</th>
+                  <th>Nom</th>
+                  <th>Age</th>
+                  <th>Classe</th>
                 </tr>
               </thead>
               <tbody>
@@ -94,8 +95,10 @@ class App extends Component{
                   <td>{tableau[1]}</td>
                   <td>{tableau[2]}</td>
                   <td>{tableau[3]}</td>
-                </tr> */}
-                {tab}
+               </tr> */}
+               <tr>
+              {tableau.map(tabs =><td>{tabs}</td>)}
+              </tr>
                 
                 {/* {tableau.map((tabs) =>
                     <tr><td>{tabs.nom}</td><td>{tabs.prenom}</td><td>{tabs.age}</td><td>{tabs.classe}</td></tr>)} */}
